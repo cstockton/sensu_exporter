@@ -116,7 +116,7 @@ func main() {
 	flag.Parse()
 
 	collector := NewSensuCollector(*sensuAPI, &http.Client{
-		Timeout: *timeout,
+		Timeout: *timeout * time.Second,
 	})
 	fmt.Println(collector.cli.Timeout)
 	prometheus.MustRegister(collector)
